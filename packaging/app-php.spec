@@ -1,9 +1,9 @@
 
 Name: app-php
 Epoch: 1
-Version: 1.0.15
+Version: 1.1.0
 Release: 1%{dist}
-Summary: PHP - APIs and install
+Summary: PHP - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Source: app-php-%{version}.tar.gz
@@ -13,7 +13,7 @@ Buildarch: noarch
 The PHP app provides management tools for the underlying PHP web server technology.
 
 %package core
-Summary: PHP - APIs and install
+Summary: PHP - Core
 Requires: app-base-core
 Requires: app-web-server
 Requires: php >= 5.3.3
