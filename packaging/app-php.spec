@@ -1,7 +1,7 @@
 
 Name: app-php
 Epoch: 1
-Version: 1.1.0
+Version: 1.1.4
 Release: 1%{dist}
 Summary: PHP - Core
 License: LGPLv3
@@ -15,7 +15,7 @@ The PHP app provides management tools for the underlying PHP web server technolo
 %package core
 Summary: PHP - Core
 Requires: app-base-core
-Requires: app-web-server
+Requires: app-web-server-core
 Requires: php >= 5.3.3
 Requires: php-imap >= 5.3.3
 Requires: php-mysql >= 5.3.3
