@@ -1,7 +1,7 @@
 
 Name: app-php
 Epoch: 1
-Version: 1.4.20
+Version: 1.4.40
 Release: 1%{dist}
 Summary: PHP - Core
 License: LGPLv3
@@ -17,6 +17,7 @@ Summary: PHP - Core
 Requires: app-base-core
 Requires: app-web-server-core
 Requires: php >= 5.3.3
+Requires: php-gd >= 5.3.3
 Requires: php-imap >= 5.3.3
 Requires: php-mysql >= 5.3.3
 Requires: php-mbstring >= 5.3.3

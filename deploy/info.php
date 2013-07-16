@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'php';
-$app['version'] = '1.4.20';
+$app['version'] = '1.4.40';
 $app['release'] = '1';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
@@ -31,6 +31,7 @@ $app['core_only'] = TRUE;
 $app['core_requires'] = array(
     'app-web-server-core',
     'php >= 5.3.3',
+    'php-gd >= 5.3.3',
     'php-imap >= 5.3.3',
     'php-mysql >= 5.3.3',
     'php-mbstring >= 5.3.3',
