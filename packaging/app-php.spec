@@ -1,7 +1,7 @@
 
 Name: app-php
 Epoch: 1
-Version: 1.4.40
+Version: 1.4.70
 Release: 1%{dist}
 Summary: PHP - Core
 License: LGPLv3
