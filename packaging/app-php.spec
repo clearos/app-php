@@ -1,7 +1,7 @@
 
 Name: app-php
 Epoch: 1
-Version: 1.5.0
+Version: 1.5.30
 Release: 1%{dist}
 Summary: PHP - Core
 License: LGPLv3
@@ -19,8 +19,12 @@ Requires: app-web-server-core
 Requires: php >= 5.3.3
 Requires: php-gd >= 5.3.3
 Requires: php-imap >= 5.3.3
-Requires: php-mysql >= 5.3.3
+Requires: php-ldap >= 5.3.3
 Requires: php-mbstring >= 5.3.3
+Requires: php-mysql >= 5.3.3
+Requires: php-process >= 5.3.3
+Requires: php-soap >= 5.3.3
+Requires: php-xml >= 5.3.3
 
 %description core
 The PHP app provides management tools for the underlying PHP web server technology.
@@ -59,9 +63,7 @@ exit 0
 %files core
 %defattr(-,root,root)
 %exclude /usr/clearos/apps/php/packaging
-%exclude /usr/clearos/apps/php/tests
 %dir /usr/clearos/apps/php
 %dir /var/clearos/php
 /usr/clearos/apps/php/deploy
 /usr/clearos/apps/php/language
-/usr/clearos/apps/php/libraries

@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'php';
-$app['version'] = '1.5.0';
+$app['version'] = '1.5.30';
 $app['release'] = '1';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
@@ -33,8 +33,12 @@ $app['core_requires'] = array(
     'php >= 5.3.3',
     'php-gd >= 5.3.3',
     'php-imap >= 5.3.3',
-    'php-mysql >= 5.3.3',
+    'php-ldap >= 5.3.3',
     'php-mbstring >= 5.3.3',
+    'php-mysql >= 5.3.3',
+    'php-process >= 5.3.3',
+    'php-soap >= 5.3.3',
+    'php-xml >= 5.3.3',
 );
 
 $app['core_directory_manifest'] = array(
