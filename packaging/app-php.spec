@@ -18,7 +18,6 @@ Requires: app-base-core
 Requires: app-web-server-core
 Requires: php >= 5.3.3
 Requires: php-gd >= 5.3.3
-Requires: php-imap >= 5.3.3
 Requires: php-ldap >= 5.3.3
 Requires: php-mbstring >= 5.3.3
 Requires: php-mysql >= 5.3.3

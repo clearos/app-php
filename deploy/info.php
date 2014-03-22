@@ -32,7 +32,6 @@ $app['core_requires'] = array(
     'app-web-server-core',
     'php >= 5.3.3',
     'php-gd >= 5.3.3',
-    'php-imap >= 5.3.3',
     'php-ldap >= 5.3.3',
     'php-mbstring >= 5.3.3',
     'php-mysql >= 5.3.3',
