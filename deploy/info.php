@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'php';
-$app['version'] = '1.6.0';
+$app['version'] = '1.6.2';
 $app['release'] = '1';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
@@ -29,6 +29,7 @@ $app['menu_enabled'] = FALSE;
 $app['core_only'] = TRUE;
 
 $app['core_requires'] = array(
+    'app-date-core >= 1:1.6.2',
     'app-web-server-core',
     'php >= 5.3.3',
     'php-gd >= 5.3.3',
@@ -38,6 +39,18 @@ $app['core_requires'] = array(
     'php-process >= 5.3.3',
     'php-soap >= 5.3.3',
     'php-xml >= 5.3.3',
+);
+
+$app['core_file_manifest'] = array(
+    'php.conf' => array (
+        'target' => '/etc/clearos/php.conf',
+        'config' => TRUE,
+        'config_params' => 'noreplace',
+    ),
+    'date-event'=> array(
+        'target' => '/var/clearos/events/date/php',
+        'mode' => '0755'
+    ),
 );
 
 $app['core_directory_manifest'] = array(

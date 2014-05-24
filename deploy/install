@@ -8,3 +8,6 @@ if [ -n "$CHECK" ]; then
     logger -p local6.notice -t installer "app-php-core - setting expose_php to prevent version leak"
     sed -i -e "s/^expose_php[[:space:]]*=.*/expose_php = Off/" /etc/php.ini
 fi
+
+# Run date event to update time zone
+/var/clearos/events/date/php

@@ -1,7 +1,7 @@
 
 Name: app-php
 Epoch: 1
-Version: 1.6.0
+Version: 1.6.2
 Release: 1%{dist}
 Summary: PHP - Core
 License: LGPLv3
@@ -15,6 +15,7 @@ The PHP app provides management tools for the underlying PHP web server technolo
 %package core
 Summary: PHP - Core
 Requires: app-base-core
+Requires: app-date-core >= 1:1.6.2
 Requires: app-web-server-core
 Requires: php >= 5.3.3
 Requires: php-gd >= 5.3.3
@@ -39,6 +40,8 @@ mkdir -p -m 755 %{buildroot}/usr/clearos/apps/php
 cp -r * %{buildroot}/usr/clearos/apps/php/
 
 install -d -m 0755 %{buildroot}/var/clearos/php
+install -D -m 0755 packaging/date-event %{buildroot}/var/clearos/events/date/php
+install -D -m 0644 packaging/php.conf %{buildroot}/etc/clearos/php.conf
 
 %post core
 logger -p local6.notice -t installer 'app-php-core - installing'
@@ -66,3 +69,5 @@ exit 0
 %dir /var/clearos/php
 /usr/clearos/apps/php/deploy
 /usr/clearos/apps/php/language
+/var/clearos/events/date/php
+%config(noreplace) /etc/clearos/php.conf

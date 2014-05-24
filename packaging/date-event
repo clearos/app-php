@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# Check auto-config status
+AUTO_CONFIG=`grep "^auto_configure[[:space:]]*=[[:space:]]*yes" /etc/clearos/php.conf 2>/dev/null`
+
+[ -n "$AUTO_CONFIG" ] || exit 0
+
+# Grab system time zone info
+[ -e /etc/sysconfig/clock ] || exit 0
+
+source /etc/sysconfig/clock
+
+[ -n "$ZONE" ] || exit 0
+
+# Grab PHP time zone
+PHP_ZONE=`grep "^date.timezone[[:space:]]*=" /etc/php.ini 2>/dev/null | sed 's/^date.timezone[[:space:]]*=[[:space:]]*//'`
+
+# Make php.ini changes if needed
+if [ "$PHP_ZONE" != "$ZONE" ]; then
+echo "wtr3"
+    ZONE_SEDSAFE=`echo $ZONE | sed 's/\//\\\\\//g'`
+    if [ -z "$PHP_ZONE" ]; then
+        logger -p local6.notice -t php "adding time zone to php.ini"
+        sed -i -e "s/^;[[:space:]]*date.timezone[[:space:]]*=.*/date.timezone = $ZONE_SEDSAFE/" /etc/php.ini
+    else
+        logger -p local6.notice -t php "setting time zone in php.ini"
+        sed -i -e "s/^date.timezone[[:space:]]*=.*/date.timezone = $ZONE_SEDSAFE/" /etc/php.ini
+    fi
+fi
+
