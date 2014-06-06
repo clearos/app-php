@@ -17,7 +17,6 @@ PHP_ZONE=`grep "^date.timezone[[:space:]]*=" /etc/php.ini 2>/dev/null | sed 's/^
 
 # Make php.ini changes if needed
 if [ "$PHP_ZONE" != "$ZONE" ]; then
-echo "wtr3"
     ZONE_SEDSAFE=`echo $ZONE | sed 's/\//\\\\\//g'`
     if [ -z "$PHP_ZONE" ]; then
         logger -p local6.notice -t php "adding time zone to php.ini"
