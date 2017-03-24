@@ -1,7 +1,7 @@
 
 Name: app-php
 Epoch: 1
-Version: 2.1.6
+Version: 2.3.0
 Release: 1%{dist}
 Summary: PHP - Core
 License: LGPLv3
@@ -65,9 +65,11 @@ exit 0
 %files core
 %defattr(-,root,root)
 %exclude /usr/clearos/apps/php/packaging
+%exclude /usr/clearos/apps/php/unify.json
 %dir /usr/clearos/apps/php
 %dir /var/clearos/php
 /usr/clearos/apps/php/deploy
 /usr/clearos/apps/php/language
+/usr/clearos/apps/php/libraries
 /var/clearos/events/date/php
 %config(noreplace) /etc/clearos/php.conf

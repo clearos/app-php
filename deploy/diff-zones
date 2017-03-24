@@ -50,4 +50,17 @@ clearos_load_library('php/PHP');
 ///////////////////////////////////////////////////////////////////////////////
 
 $php = new PHP();
-$php->auto_configure();
+$diff = $php->timezone_diff();
+
+echo "Mapped timezones\n";
+echo "----------------\n";
+
+foreach ($diff['mapped'] as $timezone)
+    echo "$timezone\n";
+
+echo "\n";
+echo "Missing timezones\n";
+echo "-----------------\n";
+
+foreach ($diff['missing'] as $timezone)
+    echo "$timezone\n";
