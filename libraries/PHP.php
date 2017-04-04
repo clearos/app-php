@@ -58,10 +58,12 @@ clearos_load_language('php');
 use \clearos\apps\base\File as File;
 use \clearos\apps\base\Software as Software;
 use \clearos\apps\date\Time as Time;
+use \clearos\apps\web_server\Httpd as Httpd;
 
 clearos_load_library('base/File');
 clearos_load_library('base/Software');
 clearos_load_library('date/Time');
+clearos_load_library('web_server/Httpd');
 
 // Exceptions
 //-----------
@@ -184,6 +186,9 @@ class PHP extends Software
             if ($replaced == 0)
                 $file->add_lines_after("date.timezone = $php_timezone\n", "/^\[Date\]/");
         }
+
+        $httpd = new Httpd();
+        $httpd->reset(FALSE);
     }
 
     /**
