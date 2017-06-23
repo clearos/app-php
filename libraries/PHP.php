@@ -157,7 +157,7 @@ class PHP extends Software
         if (! $this->get_auto_configure_state())
             return;
 
-        $php_timezone = $this->get_detected_timezone(TRUE);
+        $php_timezone = $this->get_detected_timezone();
 
         $file = new File(self::FILE_CONFIG);
 
@@ -177,13 +177,12 @@ class PHP extends Software
     /**
      * Returns the best matched PHP timezone from system timeozone.
      *
-     * The log is handy for verifying results in the field.  Please feel
-     * free to remove it in the future.
+     * @param string $log_tag app tag used in logging
      *
      * @return string timezone
      */
 
-    public function get_detected_timezone($log = FALSE)
+    public function get_detected_timezone($log_tag = 'php')
     {
         clearos_profile(__METHOD__, __LINE__);
 
@@ -195,17 +194,14 @@ class PHP extends Software
 
         if (in_array($system_timezone, $php_timezones)) {
             $php_timezone = $system_timezone;
-            if ($log)
-                clearos_log('php', "set timezone - $php_timezone");
+            clearos_log($log_tag, "set timezone - $php_timezone");
         } else {
             if (array_key_exists($system_timezone, $this->mapping)) {
                 $php_timezone = $this->mapping[$system_timezone];
-                if ($log)
-                    clearos_log('php', "mapped system timezone $system_timezone to PHP timezone $php_timezone");
+                clearos_log($log_tag, "mapped system timezone $system_timezone to PHP timezone $php_timezone");
             } else {
                 $php_timezone = 'America/New_York';
-                if ($log)
-                    clearos_log('php', "unable find PHP timezone for system timezone: $system_timezone");
+                clearos_log($log_tag, "unable find PHP timezone for system timezone: $system_timezone");
             }
         }
 
