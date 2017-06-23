@@ -144,7 +144,7 @@ class PHP extends Software
     }
 
     /**
-     * Auto configures PPTP.
+     * Auto configures PHP.
      *
      * @return void
      * @throws Engine_Exception
@@ -157,24 +157,7 @@ class PHP extends Software
         if (! $this->get_auto_configure_state())
             return;
 
-        $php_timezones = $this->get_timezones();
-
-        $time = new Time();
-        $system_timezone = $time->get_time_zone();
-        $php_timezone = '';
-
-        if (in_array($system_timezone, $php_timezones)) {
-            $php_timezone = $system_timezone;
-            clearos_log('php', "set timezone - $php_timezone");
-        } else {
-            if (array_key_exists($system_timezone, $this->mapping)) {
-                $php_timezone = $this->mapping[$system_timezone];
-                clearos_log('php', "mapped system timezone $system_timezone to PHP timezone $php_timezone");
-            } else {
-                $php_timezone = 'America/New_York';
-                clearos_log('php', "unable find PHP timezone for system timezone: $system_timezone");
-            }
-        }
+        $php_timezone = $this->get_detected_timezone(TRUE);
 
         $file = new File(self::FILE_CONFIG);
 
@@ -189,6 +172,44 @@ class PHP extends Software
 
         $httpd = new Httpd();
         $httpd->reset(FALSE);
+    }
+
+    /**
+     * Returns the best matched PHP timezone from system timeozone.
+     *
+     * The log is handy for verifying results in the field.  Please feel
+     * free to remove it in the future.
+     *
+     * @return string timezone
+     */
+
+    public function get_detected_timezone($log = FALSE)
+    {
+        clearos_profile(__METHOD__, __LINE__);
+
+        $php_timezones = $this->get_timezones();
+
+        $time = new Time();
+        $system_timezone = $time->get_time_zone();
+        $php_timezone = '';
+
+        if (in_array($system_timezone, $php_timezones)) {
+            $php_timezone = $system_timezone;
+            if ($log)
+                clearos_log('php', "set timezone - $php_timezone");
+        } else {
+            if (array_key_exists($system_timezone, $this->mapping)) {
+                $php_timezone = $this->mapping[$system_timezone];
+                if ($log)
+                    clearos_log('php', "mapped system timezone $system_timezone to PHP timezone $php_timezone");
+            } else {
+                $php_timezone = 'America/New_York';
+                if ($log)
+                    clearos_log('php', "unable find PHP timezone for system timezone: $system_timezone");
+            }
+        }
+
+        return $php_timezone;
     }
 
     /**
