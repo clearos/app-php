@@ -9,5 +9,16 @@ if [ -n "$CHECK" ]; then
     sed -i -e "s/^expose_php[[:space:]]*=.*/expose_php = Off/" /etc/php.ini
 fi
 
+# Set default character set - see #2098
+#--------------------------------------
+
+CHECK=`grep -i "^default_charset[[:space:]]*=" /etc/php.ini`
+if [ -z "$CHECK" ]; then
+    logger -p local6.notice -t installer "app-php-core - setting default_charset"
+    sed -i -e "s/^;default_charset[[:space:]]*=.*/default_charset = \"UTF-8\"/" /etc/php.ini
+fi
+
 # Run date event to update time zone
+#-----------------------------------
+
 /var/clearos/events/date/php
